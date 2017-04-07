@@ -13,6 +13,7 @@ public class Solution_268 {
         Solution_268 solution = new Solution_268();
         System.out.println("missingNumber:" + solution.missingNumber(test));
         System.out.println("" + (3 ^ 2 ));
+        System.out.println("" + (2 ^ 2 ));
 
 
 
