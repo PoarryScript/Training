@@ -36,11 +36,12 @@ public class Solution_101 {
         TreeNode lright = new TreeNode(20);
         TreeNode llright = new TreeNode(20);
         right.right = lright;
-        left.right = llright;
+        left.left = llright;
 
 
         Solution_101 solution = new Solution_101();
         System.out.println("isSymmetric:" + solution.isSymmetric(root));
+        System.out.println("isSyc:" + solution.isSyc(root));
 
     }
 
@@ -82,12 +83,11 @@ public class Solution_101 {
      *
      ************************************************/
     /**
-     *  @author Poarry
      * @param root
-     * @return
-     * 思路 取每层的节点判断对称性
-     *
+     * @return 思路 取每层的节点判断对称性
+     * <p>
      * note: 用 inValidNode 来标记为空node
+     * @author Poarry
      */
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
@@ -100,7 +100,7 @@ public class Solution_101 {
 
         currentNode.add(root);
         while (!currentNode.isEmpty()) {
-            TreeNode treeNode = currentNode.remove(currentNode.size()-1);
+            TreeNode treeNode = currentNode.remove(currentNode.size() - 1);
             if (treeNode.left != null) {
                 levelNode.add(treeNode.left);
             } else {
@@ -115,7 +115,7 @@ public class Solution_101 {
                 if (!checkSymmetric(levelNode)) {
                     return false;
                 }
-                levelNode.removeIf(p -> p.val==0x7fffffff);
+                levelNode.removeIf(p -> p.val == 0x7fffffff);
                 currentNode = levelNode;
                 levelNode = new LinkedList<>();
             }
@@ -141,5 +141,43 @@ public class Solution_101 {
         return true;
     }
 
+    public boolean isSyc(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        Queue<TreeNode> left = new LinkedList();
+        Queue<TreeNode> right = new LinkedList();
 
+        left.add(root.left);
+        right.add(root.right);
+
+        while (!left.isEmpty() && !right.isEmpty()) {
+
+            TreeNode l = left.remove();
+            TreeNode r = right.remove();
+
+            if (l == null && r == null) {
+                continue;
+            }else if (l == null || r == null){
+                return false;
+            }
+
+            if (l.val != r.val) {
+                return false;
+
+            } else {
+
+                left.add(l.left);
+
+                left.add(l.right);
+
+                right.add(r.right);
+
+                right.add(r.left);
+
+            }
+
+        }
+        return true;
+    }
 }

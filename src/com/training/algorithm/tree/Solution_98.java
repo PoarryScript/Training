@@ -15,47 +15,57 @@ public class Solution_98 {
         root.right = right;
         TreeNode lright = new TreeNode(6);
         TreeNode llright = new TreeNode(20);
-        right.right = lright;
+        right.left = lright;
         lright.right = llright;
 
+//        solution.inOrder(root);
 
         boolean isValid = solution.isValidBST(root);
         System.out.println("isValid:" + isValid);
 
-        solution.inOrderTree(root,root.val);
     }
 
+    int rootValue;
+
     public boolean isValidBST(TreeNode root) {
+
 
         if (root == null) {
             return true;
         }
-        int preNodeValue = root.val;
-//        return inOrderTree(root, preNodeValue);
+        rootValue = root.val;
+        return viaNode(root.val, root.left, root.right);
+    }
+
+    private boolean viaNode(int val, TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+        if (left == null && right != null) {
+            if (right.val <= val || right.val <= rootValue) {
+                return false;
+            }
+            return viaNode(right.val, right.left, right.right);
+        }
+        if (right == null && left != null) {
+            if (left.val >= val || left.val >= rootValue) {
+                return false;
+            }
+            return viaNode(left.val, left.left, left.right);
+        }
+        if (left != null && right != null) {
+            return viaNode(right.val, right.left, right.right) && viaNode(left.val, left.left, left.right);
+        }
         return true;
     }
 
-    private void inOrderTree(TreeNode root, int preNodeValue) {
-        if (root == null) {
-            return ;
+    private void inOrder(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
         }
-        inOrderTree(root.left, root.left.val) ;
-//        viaNode(root);
-        System.out.println("root value:"+root.val);
-        System.out.println("preNodeValue:"+preNodeValue);
-        inOrderTree(root.right, root.right.val);
-
-        return ;
+        inOrder(treeNode.left);
+        System.out.println("node " + treeNode.val);
+        inOrder(treeNode.right);
     }
 
-    private boolean viaNode(TreeNode root) {
-        boolean isValidNode = false;
-        if (root.left != null) {
-            isValidNode = root.left.val < root.val;
-        }
-        if (root.right != null) {
-            isValidNode = root.right.val > root.val;
-        }
-        return isValidNode;
-    }
 }
