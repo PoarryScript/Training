@@ -1,5 +1,7 @@
 package com.training.algorithm.array;
 
+import com.training.algorithm.Utils;
+
 /**
  * Created by j-yangbo on 2017/4/14.
  * <p>
@@ -19,17 +21,44 @@ public class Solution_283 {
 
     public static void main(String[] args) {
         Solution_283 solution = new Solution_283();
-        int[] test ={0, 1, 0, 3, 12};
+//        int[] test = {0, 1, 0, 3, 12};
+//        int[] test = {0, 0, 0, 0, 12};
+//        int[] test = {10, 0, 0, 0, 0};
+        int[] test = {10, 0, 0, 110, 0};
         solution.moveZeroes(test);
     }
 
-
+/*
     public void moveZeroes(int[] nums) {
-        if (nums == null||nums.length<2) {
+        if (nums == null || nums.length < 2) {
             return;
         }
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                //detection zero
+                if (nums[i] == 0 && nums[j] != 0) {
+                    nums[i] = nums[j];
+                    nums[j] = 0;
+                }
+            }
+        }
 
+        Utils.printArray(nums);
+    }*/
+
+public void moveZeroes(int[] nums){
+    int detectionZeroIndex=0;
+    for (int i = 0; i < nums.length; i++) {
+        if (nums[i]!=0){
+            int swap = nums[i];
+            nums[i]= nums[detectionZeroIndex];
+            nums[detectionZeroIndex] =swap;
+            detectionZeroIndex++;
+        }
     }
+    Utils.printArray(nums);
+
+}
 
 
 }
