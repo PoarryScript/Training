@@ -7,12 +7,25 @@ import java.util.Arrays;
 
 /**
  * Created by j-yangbo on 2017/4/7.
- * Remove Duplicates from Sorted Array
+ * 26 Remove Duplicates from Sorted Array
+ * <p>
+ * Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+ * <p>
+ * Do not allocate extra space for another array, you must do this in place with constant memory.
+ * <p>
+ * For example,
+ * Given input array nums = [1,1,2],
+ * <p>
+ * Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.
+ * <p>
+ * Subscribe to see which companies asked this question.
  */
 public class Solution_26 {
     public static void main(String[] args) {
         Solution_26 solution = new Solution_26();
-        int[] test = {1, 1, 2,3,4,4,5,6,7,8,8,9,};
+//        int[] test = {1, 1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9,};
+        int[] test = {1, 1, 3,6};
+        System.out.println("length" + test.length);
         System.out.println("new length :" + solution.removeDuplicates(test));
     }
 
@@ -21,19 +34,21 @@ public class Solution_26 {
      * @return
      */
     public int removeDuplicates(int[] nums) {
-        int newLength = nums.length;
-        int duplicateIndex = 0;
-        for (int i = 1; i < nums.length-1; i++) {
 
-            int xor = nums[i - 1] ^ nums[i];
-            if (xor == 0) {
-                nums[i] = nums[i + 1];
-                newLength--;
+        int endIndex = nums.length - 1;
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j <nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    int swap = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[endIndex] = swap;
+                    endIndex--;
+                }
             }
         }
         Utils.printArray(nums);
-        return newLength;
-        //TODO   unCompleted
+        return endIndex;
     }
 
 
