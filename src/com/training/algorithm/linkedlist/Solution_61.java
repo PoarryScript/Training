@@ -16,7 +16,10 @@ public class Solution_61 {
 
     public static void main(String[] args) {
 
-        String string ="2";
+
+        Solution_61 solution = new Solution_61();
+        solution.rotateRight(LinkedListUtils.createListNode(),2);
+
 
     }
 
@@ -25,6 +28,8 @@ public class Solution_61 {
         if (head == null || head.next == null) {
             return head;
         }
+
+        LinkedListUtils.printLinkedList(head);
         ListNode root = head;
 
         int size = 0;
@@ -33,17 +38,27 @@ public class Solution_61 {
             root = root.next;
         }
         ListNode newNode = head;
-        ListNode headPartNode;
-        ListNode tailPartNode;
-
+        ListNode headPartNode = head;
+        ListNode tailPartNode = null;
         while (newNode != null) {
+
+            newNode=  newNode.next;
+            ListNode node = newNode;
             newNode = newNode.next;
+
             size--;
+
             if (size == k) {
-                tailPartNode = newNode;
+                tailPartNode = newNode.next;
+                break;
             }
         }
-        return null;
+        headPartNode.next = tailPartNode;
+
+        System.out.println("After rotate");
+        LinkedListUtils.printLinkedList(tailPartNode);
+        LinkedListUtils.printLinkedList(headPartNode);
+        return headPartNode;
     }
 
 }
