@@ -19,4 +19,22 @@ public class Utils {
             System.out.println(i + "->" + list.get(i));
         }
     }
+
+    public static void print2DimensionalArray(int[][] array) {
+        if (array == null) {
+            System.out.println("empty !!");
+            return;
+        }
+        System.out.println("===================2DimensionalArray start============================");
+
+        for (int i = 0; i < array.length; i++) {
+
+            for (int j = 0; j < array[0].length; j++) {
+                System.out.print("" + array[i][j] + "     ");
+            }
+            System.out.println("");
+
+        }
+        System.out.println("===================2DimensionalArray end============================");
+    }
 }
