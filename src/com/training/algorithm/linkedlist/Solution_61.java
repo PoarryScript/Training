@@ -39,25 +39,33 @@ public class Solution_61 {
         }
         ListNode newNode = head;
         ListNode headPartNode = head;
-        ListNode tailPartNode = null;
+        ListNode tailPartNode = new ListNode(0);
         while (newNode != null) {
 
             newNode=  newNode.next;
-            ListNode node = newNode;
-            newNode = newNode.next;
-
             size--;
-
             if (size == k) {
-                tailPartNode = newNode.next;
+                tailPartNode.next = newNode;
                 break;
             }
         }
-        headPartNode.next = tailPartNode;
 
+//        tailPartNode.next = headPartNode;
         System.out.println("After rotate");
-        LinkedListUtils.printLinkedList(tailPartNode);
+
+        LinkedListUtils.printLinkedList(tailPartNode.next);
+        System.out.println("|||");
         LinkedListUtils.printLinkedList(headPartNode);
+
+
+        ListNode p = new ListNode(0);
+//        p.next = tailPartNode.next;
+        p=tailPartNode.next;
+         p=headPartNode;
+        System.out.println("+++");
+        LinkedListUtils.printLinkedList(p);
+
+
         return headPartNode;
     }
 
