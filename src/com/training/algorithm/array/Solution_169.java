@@ -1,6 +1,7 @@
 package com.training.algorithm.array;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by j-yangbo on 2017/5/3.
@@ -56,7 +57,5 @@ public class Solution_169 {
         return result;
 
     }
-
-
 
 }
