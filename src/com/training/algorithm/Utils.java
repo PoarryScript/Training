@@ -19,6 +19,12 @@ public class Utils {
             System.out.println(i + "->" + list.get(i));
         }
     }
+    public static void printStr(String msg){
+        System.out.println("result===>"+msg);
+    }
+    public static void printInt(int msg){
+        System.out.println("value===>"+msg);
+    }
 
     public static void print2DimensionalArray(int[][] array) {
         if (array == null) {
