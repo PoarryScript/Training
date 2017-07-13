@@ -26,6 +26,7 @@ public class Solution_206 {
 
     }
 
+
    /* public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
@@ -45,6 +46,19 @@ public class Solution_206 {
         LinkedListUtils.printLinkedList(newNode);
         return newNode;
     }*/
+
+    public ListNode reversesList(ListNode listNode) {
+        if (listNode == null || listNode.next == null) {
+            return listNode;
+        }
+        ListNode newListNode = null;
+        while (listNode != null) {
+
+            ListNode node = listNode.next;
+            newListNode = listNode;
+        }
+        return newListNode;
+    }
 
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
