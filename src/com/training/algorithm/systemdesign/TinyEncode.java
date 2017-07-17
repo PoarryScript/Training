@@ -18,6 +18,7 @@ public class TinyEncode {
         TinyEncode tinyEncode = new TinyEncode();
         String originalCode = "http://101.200.228.39/zentaopms/www/user-login-L3plbnRhb3Btcy93d3cvYnVnLWJyb3dzZS0zLmh0bWw=.html";
         String shortUrl = tinyEncode.encode(originalCode);
+        System.out.println("" + shortUrl);
 
         String url = tinyEncode.decode(shortUrl);
         System.out.println("" + url);
